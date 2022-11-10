@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package AdrStatusProto;
+
+message AdrEventStatus {
+  uint32 adr_eventrecordflagworld = 1;
+}
+
+message AdrFailureStatus {
+  uint32 adr_adrfailurestatus = 1;
+}
+

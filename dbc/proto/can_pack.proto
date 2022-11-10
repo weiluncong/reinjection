@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package canProto;
+
+message CanPacks {
+  repeated .canProto.CanPackMsg canData = 1;
+}
+
+message CanPackMsg {
+  int32 id = 1;
+  int32 dlc = 2;
+  repeated uint32 data = 3;
+}
+

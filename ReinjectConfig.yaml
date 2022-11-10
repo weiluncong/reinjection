@@ -1,0 +1,169 @@
+case:
+  - DTMNumber: "DTM123456789_1"
+    scriptPath: alcCase
+    scriptConfigPath: "./testpy/config/alcCase.yaml"
+    isReplay: true
+
+  - DTMNumber: "DTM123456789_2"
+    scriptPath: iaccCase
+    scriptConfigPath: "./testpy/config/iaccCase.yaml"
+    isReplay: true
+
+  - DTMNumber: "DTM123456789_3"
+    scriptPath: nidCase
+    scriptConfigPath: "./testpy/config/nidCase.yaml"
+    isReplay: true
+
+isStartCapilot: true
+CapilotScriptPath: "/home/ca/integrated/pc/B002.11.2-fixCAN-1021/capilot_comVerRecord.sh"
+
+replayTopic:
+  # usbCamera
+  - Idraw-Struct.CameraData-usb0
+  - Idraw-Struct.CameraData-usb1
+  - Idraw-Struct.CameraData-usb2
+  - Idraw-Struct.CameraData-usb3
+  - Idraw-Struct.CameraData-usb4
+  - Idraw-Struct.CameraData-usb5
+  # map
+  - map_data_conversion-hdmaperc.DynamicHDMapErc
+  - map_data_conversion-hdmaperc.StaticHDMapErc
+  - map_data_conversion-localizationerc.OdometryErc
+  - map_data_conversion-insdataerc.InsDataErc
+  - map_static_info-hdmap.StaticHDMapInfo
+  - map_dynamic_info-hdmap.DynamicHDMapInfo
+  - adas_udp_receiver-adasmap.AdasMapInfo
+  - front_camera_analyzer-localization.PointCloud-fc
+  - ins_kalman_filter-localization.InsData-filtered
+  - kalman_filter-localization.Odometry-float_hz
+  - kalman_filter-localization.Odometry
+  - kalman_filter-localization.Odometry-reset_signal
+  - localization_diagnosis-localization.Diagnosis
+  - semantic_localization-localization.Odometry-semantic
+  - semantic_localization-localization.Log-trigger
+
+  # sab
+  - sab_c385-RawDataProto.RawData-fcr
+  - sab_c385-RawDataProto.RawData-rcr
+  - sab_c385-RawDataProto.RawData-rv
+
+  - sab_c385-RadarProto.RadarObjects-fcr
+  - sab_c385-RadarProto.RadarDetections-fcr
+  - sab_c385-RadarProto.RadarFreeSpace-fcr
+  - sab_c385-RadarProto.RadarObjects-rcr
+  - sab_c385-RadarProto.RadarDetections-rcr
+  - sab_c385-RadarProto.RadarFreeSpace-rcr
+
+  - sab_c385-RadarProto.RadarObjects-fr
+  - sab_c385-RadarProto.RadarDetections-fr
+  - sab_c385-RadarProto.RadarFreeSpace-fr
+  - sab_c385-RadarProto.RadarPedData-fr
+
+  - sab_c385-CameraProto.CamObjects-fc
+  - sab_c385-CameraProto.CamLines-fc
+  - sab_c385-CameraProto.FcLines
+  - sab_c385-CameraProto.CamLinesWithImage-fc
+  - sab_c385-CameraProto.CamFreeSpace-fc
+  - sab_c385-RawDataProto.RawData-fc
+  - sab_c385-CameraProto.CamTsr-fc
+
+  - sab_c385-CameraProto.CamObjects-fc_eth
+  - sab_c385-CameraProto.CamObjects-fc_eth_pedhead
+  - sab_c385-CameraProto.CamFreeSpace-fc_eth
+
+  - sab_c385-CameraProto.CamLines-ac
+  - sab_c385-CameraProto.CamObjects-ac
+  - sab_c385-CameraProto.CamFreeSpace-ac
+
+  - sab_c385-localization.InsData
+  - sab_c385-localization.InsData-ca
+
+  - sab_c385-FunctionInfoProto.CcanFunction-fcr
+  - sab_c385-FunctionInfoProto.BcanFunction-rcr
+  - sab_c385-FunctionInfoProto.EcanFunction-fc
+
+replayTopic_TC397:
+  #vehicle_abstraction
+  - sab_c385-EmsProto.BusEmsMotionInfo
+  - sab_c385-EmsProto.BusEmsSts
+  - sab_c385-BusmfsProto.BusMfsHod
+  - sab_c385-BusmfsProto.BusMfsSwitch
+  - sab_c385-TboxProto.BusTboxSts
+  - sab_c385-TboxProto.BusTboxTime
+  - sab_c385-TcuProto.BusAcmInfo
+  - sab_c385-TcuProto.BusTcuSts
+  - sab_c385-BusimsProto.BusIMS
+  - sab_c385-BusbcmProto.BusBcmDoorSts
+  - sab_c385-BusbcmProto.BusBcmDsmSts
+  - sab_c385-BusbcmProto.BusBcmLightSts
+  - sab_c385-BusbcmProto.BusBcmSts
+  - sab_c385-BusbcmProto.BusBcmTMS
+  - sab_c385-BusbcmProto.BusBcmTPMS
+  - sab_c385-BusbcmProto.BusBcmWinSts
+  - sab_c385-BusbcmProto.BusPEPS
+  - sab_c385-BusbcmProto.BusSRS
+  - sab_c385-PhonesetProto.BusRFBT
+  - sab_c385-BusadasmapProto.BusAdasMapCurInfo
+  - sab_c385-BusadasmapProto.BusAdasMapRoadInfo
+  - sab_c385-BusadasmapProto.BusAdasMapSlopeInfo
+  - sab_c385-BusadasmapProto.BusAdasMapSts
+  - sab_c385-BusrbmProto.BusRbmFbSts
+  - sab_c385-BusrbmProto.BusRbmFunSts
+  - sab_c385-BusrbmProto.BusRbmMotionInfo
+  - sab_c385-BushusetProto.BusHuAdsFunSet
+  - sab_c385-BushusetProto.BusHuApaSet
+  - sab_c385-BushusetProto.BusHuAvmSet
+  - sab_c385-BushusetProto.BusHuDaFunSet
+  - sab_c385-BushusetProto.BusHuDvrSet
+  - sab_c385-BushusetProto.BusHuScreenOper
+  - sab_c385-BushusetProto.BusHuScreenSet
+  - sab_c385-BushusetProto.BusHuVcReq
+  - sab_c385-VcuProto.BusVcuEngine
+  - sab_c385-VcuProto.BusVcuPedl
+  - sab_c385-VcuProto.BusVcuSwitchSts
+  - sab_c385-VcuProto.BusVcuTransmission
+  - sab_c385-BusespProto.BusBrkPressure
+  - sab_c385-BusespProto.BusEpbFunInfo
+  - sab_c385-BusespProto.BusEspFbSts
+  - sab_c385-BusespProto.BusEspFbStsforAPA
+  - sab_c385-BusespProto.BusEspFuncSts
+  - sab_c385-BusespProto.BusEspMbr
+  - sab_c385-BusespProto.BusEspMotionInfo
+  - sab_c385-BusespProto.BusEspWhlSpd
+  - sab_c385-BusipProto.BusIP
+  - sab_c385-BusepsProto.BusEpsMotionInfo
+  - sab_c385-BusepsProto.BusEpsSts
+  - sab_c385-BusepsProto.BusSAS
+
+  - sab_c385-FromgrdProto.BusAdsHUSetProcs
+  - sab_c385-FromgrdProto.BusButtonProcs
+  - sab_c385-FromgrdProto.BusChassisFilureSts
+  - sab_c385-FromgrdProto.BusDriverOperation
+  - sab_c385-FromgrdProto.BusEnvironment
+  - sab_c385-FromgrdProto.BusRoadSts
+  - sab_c385-FromgrdProto.BusVehBodySts
+  - sab_c385-FromgrdProto.BusVehConditon
+
+  - sab_c385-StmProto.SysStateMng
+  - sab_c385-StmProto.SafetyStrategyMng
+  - sab_c385-StmProto.PdStsMng
+  - sab_c385-StmProto.DebugSTM
+  - sab_c385-VlcProto.DebugVLC
+  - sab_c385-LatProto.DebugLAT
+  - sab_c385-forstmodcProto.BusForStm
+  - sab_c385-forstmodcProto.BusForOdc
+  - sab_c385-FromgrdProto.BusRadCamSts
+  - sab_c385-FromgrdProto.BusActiveSts
+  #RCAN
+  - sab_c385-VehiclerbmInfoProto.BusRbmInfo
+  - sab_c385-VehiclerbmInfoProto.BusEpsRbmMotionInfo
+  - sab_c385-VehiclerbmInfoProto.BusEpsRbmSts
+  - sab_c385-VehiclerbmInfoProto.BusRbmSAS
+  - sab_c385-VehiclerbmInfoProto.BusEspRbmFuncSts
+  - sab_c385-VehiclerbmInfoProto.BusRbmRcanFbSts
+  - sab_c385-VehiclerbmInfoProto.BusEpbRbmFunInfo
+  - sab_c385-VehiclerbmInfoProto.BusEspRbmMotionInfo
+  - sab_c385-VehiclerbmInfoProto.BusVcuRbmPedl
+  - sab_c385-VehiclerbmInfoProto.BusBrkRbmPressure
+  - sab_c385-VehiclerbmInfoProto.BusEspRbmFbStsforAPA
+  - sab_c385-VehiclerbmInfoProto.BusEspRbmFbSts

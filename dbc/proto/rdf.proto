@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+package RdfProto;
+
+message FromRDF {
+  .RdfProto.DiagnosisInfoRDF dtc_rdf = 1;
+  .RdfProto.SystemStatusRDF systemstatus_rdf = 2;
+  .RdfProto.DebugRDF debug_rdf = 3;
+  .RdfProto.CtrlCmdRDF ctrlcmd_rdf = 4;
+  .RdfProto.RDFHeartBeats rdfheartbeats = 5;
+}
+
+message CtrlCmdRDF {
+  .RdfProto.RDFLATCtrlCmd lat_ctrl_cmd = 1;
+  .RdfProto.RDFLongCtrlCmd long_ctrl_cmd = 2;
+}
+
+message DTCLog {
+  uint32 rdf_active_reason1 = 1;
+  uint32 rdf_active_reason2 = 2;
+  uint32 rdf_active_reason3 = 3;
+  uint32 rdf_active_times = 4;
+  uint32 rdf_fus_err_times = 5;
+  uint32 rdf_erc_check_err_times = 6;
+  uint32 rdf_dcs_check_err_times = 7;
+  uint32 rdf_lng_check_err_times = 8;
+  uint32 rdf_vlc_err_times = 9;
+  uint32 rdf_lnp_err_times = 10;
+  uint32 rdf_lat_check_err_times = 11;
+  uint32 rdf_pcs_check_err_times = 12;
+  uint32 rdf_lat_err_times = 13;
+  uint32 rdf_pcs_err_times = 14;
+  uint32 rdf_821hw_err_times = 15;
+  uint32 rdf_a72_397_err_times = 16;
+}
+
+message DebugRDF {
+  .RdfProto.LATCheckDebug debug_LATcheck = 1;
+  .RdfProto.UDLCCheckDebug debug_UDLCCheck = 2;
+  uint32 rdf_version = 3;
+}
+
+message DiagnosisInfoRDF {
+  uint32 pcs_plausibility_check = 1;
+  bool lat_plausibility_check = 2;
+  uint32 udlc_plausibility_check = 3;
+  .RdfProto.LongCheckResult Long_dependability_check = 4;
+  .RdfProto.DTCLog dtc_log = 5;
+}
+
+message LATCheckDebug {
+  bool Debug_AngLim_ErrInfo = 1;
+  bool Debug_AveLim_ErrInfo = 2;
+  bool Debug_Offset = 3;
+  bool Debug_HeadingAngle = 4;
+  bool LatCheckHeartbeat = 5;
+  uint32 LATCheck_VersionNum = 6;
+}
+
+message LongCheckResult {
+  uint32 vlc_speedplausibility_check = 1;
+  bool vlc_AccDecplausibility_check = 2;
+  bool vlc_Accplausibility_check = 3;
+  uint32 vlc_acctrqreqplausibility_check = 4;
+  uint32 vlc_CDDplausibility_check = 5;
+}
+
+message RDFHeartBeats {
+  uint32 heart_beats = 1;
+}
+
+message RDFLATCtrlCmd {
+  bool RDF_LatAngReqActive = 1;
+  uint32 RDF_LatAngReq = 2;
+  uint32 ACC_MotorTorqMaxLimRe = 3;
+  uint32 ACC_MotorTorqMinLimRe = 4;
+  uint32 RDF_ReqMode = 5;
+  uint32 RDF_VersionNum = 6;
+}
+
+message RDFLongCtrlCmd {
+  uint32 RDF_ACC_ACCTargetAcceleration = 1;
+  bool RDF_ACC_CDDActive = 2;
+  uint32 RDF_ACC_AccTrqReq = 3;
+  bool RDF_ACC_AccTrqReqActive = 4;
+  bool RDF_ACC_Driveoff_Reques = 5;
+  bool RDF_ACC_DecToStop = 6;
+  uint32 RDF_ADCReqMode = 7;
+  uint32 RDF_ACC_ADCReqType = 8;
+}
+
+message SystemStatusRDF {
+  uint32 rdf_state = 1;
+  bool rdf_take_over_req = 2;
+  uint32 rdf_acc_accmode = 3;
+  bool rdf_emergency_light_req = 4;
+  uint32 rdf_func_ctrl_req = 5;
+}
+
+message UDLCCheckDebug {
+  uint32 lane_change_turn_sig = 1;
+  uint32 turn_left_status_check = 2;
+  uint32 turn_right_status_check = 3;
+  uint32 wrong_return_check = 4;
+  uint32 lreturn_status_check = 5;
+  uint32 rreturn_status_check = 6;
+}
+

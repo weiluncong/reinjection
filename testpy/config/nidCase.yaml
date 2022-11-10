@@ -1,0 +1,25 @@
+Message :
+    - sab_c385-FromgrdProto.BusButtonProcs~grdIaccSwitchSts            # 0
+    - sab_c385-StmProto.SysStateMng~sysLatstate                        # 1
+    - sab_c385-StmProto.SysStateMng~sysLngstate                        # 2
+    - sab_c385-StmProto.PdStsMng~pdNdaStatus                           # 3
+    - sab_c385-StmProto.PdStsMng~pdStatus                              # 4
+    - sab_c385-StmProto.DebugSTM~lngAvailableWord                      # 5
+    - sab_c385-StmProto.Odc~odc397Stsinh~odcCruiseFeaturerescond1sts   # 6
+    - sab_c385-StmProto.Odc~odc821Stsinh~odcCruiseFeaturerescond2sts   # 7
+    - sab_c385-StmProto.Odc~odc397Textinh~odcCruiseFeaturerescond1text # 8
+    - sab_c385-StmProto.Odc~odc821Textinh~odcCruiseFeaturerescond2text # 9
+    - sab_c385-StmProto.DebugSTM~latAvailableWord                      # 10
+    - sab_c385-StmProto.Odc~odc397Stsinh~odcLccFeaturerescond1sts      # 11
+    - sab_c385-StmProto.Odc~odc821Stsinh~odcLccFeaturerescond2sts      # 12
+    - sab_c385-StmProto.Odc~odc397Textinh~odcLccFeaturerescond1text    # 13
+    - sab_c385-StmProto.Odc~odc821Textinh~odcLccFeaturerescond2text    # 14
+    # - sab_c385-StmProto.Odc~odc397Stsinh~odcNdaFunrescond1sts          # 15
+    # - sab_c385-StmProto.Odc~odc821Stsinh~odcNdaFunrescond2sts          # 16
+    # - sab_c385-StmProto.Odc~odc397Textinh~odcNdaFunrescond1text        # 17
+    # - sab_c385-StmProto.Odc~odc821Textinh~odcNdaFunrescond2text        # 18
+    - erc_com-ErcProto.HdMapStatusErc~hppSts                            #15
+
+author : 202207766@Any3.com
+dataFile : "C385_500131_2022-08-07_13-37-45.dat"
+IaccActive : -1 # 不小于0时有效

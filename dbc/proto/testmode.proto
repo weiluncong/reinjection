@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package TestmodeProto;
+
+message TestMode {
+  bool test_mode = 1;
+}
+
