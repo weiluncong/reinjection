@@ -13,7 +13,6 @@
 #include <QList>
 #include <QObject>
 
-
 #define TOQSTR(x) QString::fromStdString(x)
 #define TOSTR(x) QString(x).toStdString()
 
@@ -33,33 +32,32 @@ private:
     /* data */
 
     CProtoPool *proto_pool_ = nullptr;
-    std::string protoAddressPc_ = "tcp://127.0.0.1:7766";
+    std::string protoAddressPc_ = "tcp://192.168.1.175:7766";
+    // std::string protoAddressPc_ = "tcp://127.0.0.1:7766";
 
     QMap<QString, double> toSWCData(const google::protobuf::Message &msg, const QString &topicName);
     QString getRepeatedMsg(const google::protobuf::Message &msg,
-                       const google::protobuf::FieldDescriptor *field,int index);
-    void handleData(const double & timeStamp, const std::string & topicName, const std::string & data);
+                           const google::protobuf::FieldDescriptor *field, int index);
+    void handleData(const double &timeStamp, const std::string &topicName, const std::string &data);
 
     QList<QString> needSignal;
 
     QVector<std::string> needReceiveTopics;
 
     bool isStop = false;
+
 public:
     ReveiveParserData(/* args */);
     ~ReveiveParserData();
 
     // void init(const std::vector<std::string>  & signal);
     void init();
-    void setSignalFilter(const std::vector<std::string>  & signal);
+    void setSignalFilter(const std::vector<std::string> &signal);
     void receiveData();
 
-    void setStop(){isStop = true;}
+    void setStop() { isStop = true; }
 signals:
     void dataUpdate(const double, QMap<QString, double>);
-    
 };
-
-
 
 #endif // RECEIVE_PARSERDATA_H

@@ -149,14 +149,7 @@ odc_2text = {
     23:"行人 ",
     24:"航向角过大",
     25:"TJP道路类型不适用",
-    26:"车辆压线",
-    27:"匝道汇流口过窄",
-    28:"NID地图不可用",
-    29:"TJP地图不可用",
-    30:"不在静态电子围栏内",
-    31:"即将离开静态电子围栏",
-    32:"当前道路不可用",
-    33:"前方道路不可用"
+    26:"车辆压线"
 }
 
 class nidCase(EvalCase.EvalCase):
@@ -205,7 +198,9 @@ class nidCase(EvalCase.EvalCase):
                         if ((d_sysLngstate["value"] !=3) and (not self.errorFlag_lng)):  # 纵向可用条件不满足
                             lng_avaiable_word = int(d_lngAvailableWord["value"]) 
                             if(lng_avaiable_word!=0):
+                            {
                                 self.errorFlag_lng = True
+                            }
                             if ((lng_avaiable_word & 0x01) ==0x01):
                                 if (d_odcCruiseFeaturerescond1sts["value"] == 0x01):
                                     self.reason.append("ODC_巡航Feature抑制条件1存在抑制")
@@ -219,7 +214,9 @@ class nidCase(EvalCase.EvalCase):
                         if ((d_sysLatstate["value"] !=3) and (not self.errorFlag_lat)):   # 横向可用条件不满足
                             lat_avaiable_word = int(d_latAvailableWord["value"])
                             if(lat_avaiable_word!=0):
+                            {
                                 self.errorFlag_lat = True
+                            }
                             if ((lat_avaiable_word & 0x01)==0x01):
                                 self.reason.append("驾驶员油门超越")
                             if (((lat_avaiable_word & 0x02)>>1)==0x01):
@@ -233,9 +230,10 @@ class nidCase(EvalCase.EvalCase):
                             if (((lat_avaiable_word & 0x20)>>5)==0x01):
                                 if (d_odcLccFeaturerescond1sts["value"] ==0x1):
                                     print(d_odcLccFeaturerescond1text["value"])
-                                    self.reason.append("ODC_对中Feature抑制条件1不满足："+ str(odc_1text.get(int(d_odcLccFeaturerescond1text["value"]), d_odcLccFeaturerescond1text["value"]))) #str(odc_1text[int(d_odcLccFeaturerescond1text["value"])]))
+                                    self.reason.append("ODC_对中Feature抑制条件1不满足："+ str(odc_1text.get(int(d_odcLccFeaturerescond1text["value"]), "None"))) #str(odc_1text[int(d_odcLccFeaturerescond1text["value"])]))
                                 if (d_odcLccFeaturerescond2sts["value"] ==0x1):
-                                    self.reason.append("ODC_对中Feature抑制条件2不满足："+ str(odc_2text.get(int(d_odcLccFeaturerescond2text["value"]), d_odcLccFeaturerescond2text["value"])))
+                                    self.reason.append("ODC_对中Feature抑制条件2不满足："+ str(odc_2text.get(int(d_odcLccFeaturerescond2text["value"]), "None")))
+
                         if ((d_hppSts["value"] !=7) and (not self.errorFlag_hppSts)):   # HPP状态信号
                             self.errorFlag_hppSts = True
                             self.reason.append("Hpp状态:"+str(int(d_hppSts["value"])))

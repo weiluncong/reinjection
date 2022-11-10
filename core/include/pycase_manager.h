@@ -15,7 +15,8 @@
 #include "load_config.h"
 #include "ktime.h"
 
-struct MsgData{
+struct MsgData
+{
     QString signalName;
     double value;
     double timeStamp;
@@ -27,11 +28,12 @@ struct ResultInfo
     QString reason;
 };
 
-struct ConfigInfo{
+struct ConfigInfo
+{
     std::string scriptPath;
-    std::string author;
-    std::string dataFile;
-    std::string DTMNumber;
+    // std::string author;
+    // std::string dataFile;
+    // std::string DTMNumber;
     std::vector<std::string> caseSignals;
 };
 
@@ -45,42 +47,47 @@ public:
     void loadPythonClass(const char *name);
     void addData(double timestamp, QMap<QString, double> signal_map);
     void parserResult(QString caseName, QString result);
+    void setStop() { initFlagCpy = false; }
     // void parserResult(const std::string & caseName, const std::string & result){}
 
 public:
-    QMap<QString, EvalutionConfig> configMap_;// key:case名字，value:对应的配置信息
+    QMap<QString, EvalutionConfig> configMap_; // key:case名字，value:对应的配置信息
     QMap<QString, ResultInfo> resultMap_;
 
 public:
-    void run(const std::string & caseName, const double &);
+    void run(const std::string &caseName, const double &);
 
-    void setConfigInfo(const EvalutionConfig  &evalConf,const CaseConfig &caseConf, int current){
-        configInfo_.scriptPath = evalConf.scriptPath;
-        configInfo_.author = caseConf.author;
-        configInfo_.dataFile = caseConf.dataFiles[current];
-        configInfo_.DTMNumber = evalConf.DTMNumber;
+    void setConfigInfo(const std::string &scriptPath, const CaseConfig &caseConf)
+    {
+        configInfo_.scriptPath = scriptPath;
+        // configInfo_.author = caseConf.author;
+        // configInfo_.dataFile = caseConf.dataFile;
+        // configInfo_.DTMNumber = evalConf.DTMNumber;
         configInfo_.caseSignals = caseConf.signals_;
-	}
+    }
 
 private:
     ConfigInfo configInfo_;
 
     bool initFlagCpy = false;
     PyGILState_STATE gstate;
-    PyObject* pInstance_ = NULL;
+    PyObject *pModule_    = NULL;
+    PyObject *pDict_      = NULL;
+    PyObject *pConstruct_ = NULL;
+    PyObject *pClassCalc_ = NULL;
+    PyObject *pInstance_  = NULL;
     QMutex mutex;
     QQueue<MsgData> dataQueue_;
 
     std::vector<std::string> scriptPaths_;
     bool isFirstWriteReport = true;
 
-
 signals:
     void topicUpdate(QStringList);
     void sendDatapath(QString);
+    void UpdateReport(std::map<std::string, std::string>);
 
 public slots:
-
 };
 
 #endif // PYCASE_MANAGER_H

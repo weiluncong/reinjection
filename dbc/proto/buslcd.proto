@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package BuslcdProto;
+
+message BusLcdalInfo {
+  uint32 lcdal_system_status = 1;
+  uint32 lcdal_rcw_alert = 2;
+  uint32 lcdal_rcw_status = 3;
+  uint32 lcdal_right_rcw_alert = 4;
+  uint32 lcdal_right_sea_alert = 5;
+  uint32 lcdal_sea_alert = 6;
+  uint32 lcdal_sea_status = 7;
+  double time_stamp = 8;
+}
+
+message BusLcdarInfo {
+  uint32 lcdar_bsd_lca_alert = 1;
+  uint32 lcdar_bsd_lca_status = 2;
+  uint32 lcdar_elk_o_alert = 3;
+  uint32 lcdar_elk_o_status = 4;
+  uint32 lcdar_left_bsd_lca_alert = 5;
+  uint32 lcdar_left_elk_o_alert = 6;
+  uint32 lcdar_left_rcta_alert = 7;
+  uint32 lcdar_rcta_alert = 8;
+  uint32 lcdar_rcta_status = 9;
+  uint32 lcdar_rctb_active = 10;
+  uint32 lcdar_rctb_status = 11;
+  uint32 lcdar_rctb_target_decel = 12;
+  uint32 lcdar_system_status = 13;
+  double time_stamp = 18;
+}
+

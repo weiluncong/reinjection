@@ -1,11 +1,13 @@
-#include <iostream>
+﻿#include "workmanager.h"
+#include "replay_window.h"
 #include <QApplication>
-#include "work_manager.h"
 
-int main(int argc, const char** argv) {
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    ReplayWindow *wind = new ReplayWindow(nullptr);
+    wind->show();
+    // WorkManager work_;
 
-    WorkManager work;
-    work.run();
-
-    return 0;
+    return a.exec();
 }

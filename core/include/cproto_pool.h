@@ -18,7 +18,8 @@
 #include "google/protobuf/descriptor.pb.h"
 #include "google/protobuf/compiler/importer.h"
 #include "google/protobuf/dynamic_message.h"
-#include "zmq.hpp"
+// #include "zmq_handler.h"
+#include <zmq.hpp>
 
 class CProtoPool : public QObject
 {

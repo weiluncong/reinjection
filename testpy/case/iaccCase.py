@@ -32,38 +32,38 @@ class iaccCase(EvalCase.EvalCase):
     reason = []
 
     ## 日志记录
-    def __init__(self):
-        EvalCase.EvalCase.__init__(self)
-        self.logger = logging.getLogger(self.__class__.__name__)
-        self.logger.setLevel(logging.INFO)
-        console_hander  = logging.FileHandler('log/'+self.__class__.__name__+'.log','w')      # 日志文件名：类名.log
-        formatter       = logging.Formatter('%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s')
-        console_hander.setFormatter(formatter)
-        self.logger.addHandler(console_hander)
+    # def __init__(self):
+    #     EvalCase.EvalCase.__init__(self)
+    #     self.logger = logging.getLogger(self.__class__.__name__)
+    #     self.logger.setLevel(logging.INFO)
+    #     console_hander  = logging.FileHandler('log/'+self.__class__.__name__+'.log','w')      # 日志文件名：类名.log
+    #     formatter       = logging.Formatter('%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s')
+    #     console_hander.setFormatter(formatter)
+    #     self.logger.addHandler(console_hander)
 
-        self.logger.info("start log")     # self.logger.info()调用接口写入日志信息
+    #     self.logger.info("start log")     # self.logger.info()调用接口写入日志信息
 
     def case(self):
         # d_grdIaccSwitchSts = self.getLastData("transCalc-FromgrdProto.BusButtonProcs~grdIaccSwitchSts")
         d_grdIaccSwitchSts = self.getLastData(self.getSignal(0))
-        d_sysLatstate = self.getLastData("sab_c385-StmProto.SysStateMng~sysLatstate")
-        d_sysLngstate = self.getLastData("sab_c385-StmProto.SysStateMng~sysLngstate")
-        d_pdIaccStatus = self.getLastData("sab_c385-StmProto.PdStsMng~pdIaccStatus")
-        d_pdStatus = self.getLastData("sab_c385-StmProto.PdStsMng~pdStatus")
-        d_lngAvailableWord = self.getLastData("sab_c385-StmProto.DebugSTM~lngAvailableWord")
-        d_odcCruiseFeaturerescond1sts = self.getLastData("sab_c385-StmProto.Odc~odc397Stsinh~odcCruiseFeaturerescond1sts")
-        d_odcCruiseFeaturerescond2sts = self.getLastData("sab_c385-StmProto.Odc~odc821Stsinh~odcCruiseFeaturerescond2sts")
-        d_odcCruiseFeaturerescond1text = self.getLastData("sab_c385-StmProto.Odc~odc397Textinh~odcCruiseFeaturerescond1text")
-        d_odcCruiseFeaturerescond2text = self.getLastData("sab_c385-StmProto.Odc~odc821Textinh~odcCruiseFeaturerescond2text")
-        d_latAvailableWord = self.getLastData("sab_c385-StmProto.DebugSTM~latAvailableWord")
-        d_odcLccFeaturerescond1sts = self.getLastData("sab_c385-StmProto.Odc~odc397Stsinh~odcLccFeaturerescond1sts")
-        d_odcLccFeaturerescond2sts = self.getLastData("sab_c385-StmProto.Odc~odc821Stsinh~odcLccFeaturerescond2sts")
-        d_odcLccFeaturerescond1text = self.getLastData("sab_c385-StmProto.Odc~odc397Textinh~odcLccFeaturerescond1text")
-        d_odcLccFeaturerescond2text = self.getLastData("sab_c385-StmProto.Odc~odc821Textinh~odcLccFeaturerescond2text")
-        d_odcIaccFunrescond1sts = self.getLastData("sab_c385-StmProto.Odc~odc397Stsinh~odcIaccFunrescond1sts")
-        d_odcIaccFunrescond2sts = self.getLastData("sab_c385-StmProto.Odc~odc821Stsinh~odcIaccFunrescond2sts")
-        d_odcIaccIaccrescond1text = self.getLastData("sab_c385-StmProto.Odc~odc397Textinh~odcIaccIaccrescond1text")
-        d_odcIaccIaccrescond2text = self.getLastData("sab_c385-StmProto.Odc~odc821Textinh~odcIaccIaccrescond2text")
+        d_sysLatstate      = self.getLastData(self.getSignal(1))
+        d_sysLngstate      = self.getLastData(self.getSignal(2))
+        d_pdIaccStatus     = self.getLastData(self.getSignal(3))
+        d_pdStatus         = self.getLastData(self.getSignal(4))
+        d_lngAvailableWord = self.getLastData(self.getSignal(5))
+        d_odcCruiseFeaturerescond1sts  = self.getLastData(self.getSignal(6))
+        d_odcCruiseFeaturerescond2sts  = self.getLastData(self.getSignal(7))
+        d_odcCruiseFeaturerescond1text = self.getLastData(self.getSignal(8))
+        d_odcCruiseFeaturerescond2text = self.getLastData(self.getSignal(9))
+        d_latAvailableWord          = self.getLastData(self.getSignal(10))
+        d_odcLccFeaturerescond1sts  = self.getLastData(self.getSignal(11))
+        d_odcLccFeaturerescond2sts  = self.getLastData(self.getSignal(12))
+        d_odcLccFeaturerescond1text = self.getLastData(self.getSignal(13))
+        d_odcLccFeaturerescond2text = self.getLastData(self.getSignal(14))
+        d_odcIaccFunrescond1sts     = self.getLastData(self.getSignal(15))
+        d_odcIaccFunrescond2sts     = self.getLastData(self.getSignal(16))
+        d_odcIaccIaccrescond1text   = self.getLastData(self.getSignal(17))
+        d_odcIaccIaccrescond2text   = self.getLastData(self.getSignal(18))
 
         # self.sender.send(str(self.getData("transCalc-StmProto.SysStateMng~sysLatstate",100)))
         # self.logger.info("iacc active")
@@ -77,7 +77,9 @@ class iaccCase(EvalCase.EvalCase):
                         if ((d_sysLngstate["value"] !=3) and (not self.errorFlag_lng)):  # 纵向可用条件不满足
                             lng_avaiable_word = int(d_lngAvailableWord["value"]) 
                             if(lng_avaiable_word!=0):
+                            {
                                 self.errorFlag_lng = True
+                            }
                             if ((lng_avaiable_word & 0x01) ==0x01):
                                 if (d_odcCruiseFeaturerescond1sts["value"] == 0x01):
                                     self.reason.append("ODC_巡航Feature抑制条件1存在抑制")
@@ -91,7 +93,9 @@ class iaccCase(EvalCase.EvalCase):
                         if ((d_sysLatstate["value"] !=3) and (not self.errorFlag_lat)):   # 横向可用条件不满足
                             lat_avaiable_word = int(d_latAvailableWord["value"])
                             if(lat_avaiable_word!=0):
+                            {
                                 self.errorFlag_lat = True
+                            }
                             if ((lat_avaiable_word & 0x01)==0x01):
                                 self.reason.append("驾驶员油门超越")
                             if (((lat_avaiable_word & 0x02)>>1)==0x01):
@@ -107,6 +111,7 @@ class iaccCase(EvalCase.EvalCase):
                                     self.reason.append("ODC_对中Feature抑制条件1不满足")
                                 if (d_odcLccFeaturerescond2sts["value"] ==0x1):
                                     self.reason.append("ODC_对中Feature抑制条件2不满足")
+                            
                         if ((d_odcIaccFunrescond1sts["value"] !=0) and (not self.errorFlag_odc1)):   # ODC_IACC功能抑制条件1状态
                             self.errorFlag_odc1 = True
                             self.reason.append("ODC_IACC功能抑制条件1不满足")
@@ -116,25 +121,10 @@ class iaccCase(EvalCase.EvalCase):
             elif (self.currentTime - self.iaccSwitchFirstTime)>8:
                 if(not(self.errorFlag_lat or self.errorFlag_lng or self.errorFlag_odc1 or self.errorFlag_odc2)):
                     if(d_sysLatstate["value"] !=3 or d_sysLngstate["value"] !=3):
-                        self.logger.info(str(self.errorFlag_lat))
-                        self.logger.info(str(self.errorFlag_lng))
-                        self.logger.info(str(self.errorFlag_odc1))
-                        self.logger.info(str(self.errorFlag_odc2))
-                        # printf(str(self.errorFlag_lat)+str(self.errorFlag_lng)+str(self.errorFlag_odc1)+str(self.errorFlag_odc2))
                         return self.setResult("failed","none") # case已经出结果，调用setResult()设置结果
                     else:
-                        self.logger.info(str(self.errorFlag_lat))
-                        self.logger.info(str(self.errorFlag_lng))
-                        self.logger.info(str(self.errorFlag_odc1))
-                        self.logger.info(str(self.errorFlag_odc2))
-                        # printf(str(self.errorFlag_lat)+str(self.errorFlag_lng)+str(self.errorFlag_odc1)+str(self.errorFlag_odc2))
                         return self.setResult("success","none")
                 else:
-                    self.logger.info(str(self.errorFlag_lat))
-                    self.logger.info(str(self.errorFlag_lng))
-                    self.logger.info(str(self.errorFlag_odc1))
-                    self.logger.info(str(self.errorFlag_odc2))
-                    # printf(str(self.errorFlag_lat)+str(self.errorFlag_lng)+str(self.errorFlag_odc1)+str(self.errorFlag_odc2))
                     return self.setResult("failed",(",".join(self.reason)))
         return 0 
 

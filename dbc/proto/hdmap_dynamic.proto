@@ -12,6 +12,7 @@ message AnchorPosRelatedInfo {
   double to_link_end = 5;
   double to_geo_fence_end = 6;
   .hdmap.Gnss current_distination = 7;
+  bool current_link_in_odd = 8;
 }
 
 message SpecialArea {
@@ -46,6 +47,8 @@ message PathPlanningOut {
   uint32 ramp_direction_to_mainroad = 5;
   double to_odd_false = 6;
   double to_link_without_suc = 7;
+  double path_planning_out_ramp_start_dis = 8;
+  double path_planning_out_ramp_end_dis = 9;
 }
 
 message DynamicHDMapInfo {

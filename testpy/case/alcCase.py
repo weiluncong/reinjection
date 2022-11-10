@@ -149,14 +149,7 @@ odc_2text = {
     23:"行人 ",
     24:"航向角过大",
     25:"TJP道路类型不适用",
-    26:"车辆压线",
-    27:"匝道汇流口过窄",
-    28:"NID地图不可用",
-    29:"TJP地图不可用",
-    30:"不在静态电子围栏内",
-    31:"即将离开静态电子围栏",
-    32:"当前道路不可用",
-    33:"前方道路不可用"
+    26:"车辆压线"
 }
 
 class alcCase(EvalCase.EvalCase):
@@ -200,9 +193,11 @@ class alcCase(EvalCase.EvalCase):
                 if (d_pdStatus["value"] != 3 and d_pdNdaStatus["value"] !=3):
                     if (d_pdNdaStatus["value"] ==1):
                         if ((d_sysLngstate["value"] !=3) and (not self.errorFlag_lng)):  # 纵向可用条件不满足
-                            lng_avaiable_word = int(d_lngAvailableWord["value"])
+                            lng_avaiable_word = int(d_lngAvailableWord["value"]) 
                             if(lng_avaiable_word!=0):
+                            {
                                 self.errorFlag_lng = True
+                            }
                             if ((lng_avaiable_word & 0x01) ==0x01):
                                 if (d_odcCruiseFeaturerescond1sts["value"] == 0x01):
                                     self.reason.append("ODC_巡航Feature抑制条件1存在抑制")
@@ -216,7 +211,9 @@ class alcCase(EvalCase.EvalCase):
                         if ((d_sysLatstate["value"] !=3) and (not self.errorFlag_lat)):   # 横向可用条件不满足
                             lat_avaiable_word = int(d_latAvailableWord["value"])
                             if(lat_avaiable_word!=0):
+                            {
                                 self.errorFlag_lat = True
+                            }
                             if ((lat_avaiable_word & 0x01)==0x01):
                                 self.reason.append("驾驶员油门超越")
                             if (((lat_avaiable_word & 0x02)>>1)==0x01):
@@ -229,15 +226,16 @@ class alcCase(EvalCase.EvalCase):
                                 self.reason.append("pathplanning_warningsts 状态异常")
                             if (((lat_avaiable_word & 0x20)>>5)==0x01):
                                 if (d_odcLccFeaturerescond1sts["value"] ==0x1):
-                                    self.reason.append("ODC_对中Feature抑制条件1不满足："+ str(odc_1text.get(int(d_odcLccFeaturerescond1text["value"]), d_odcLccFeaturerescond1text["value"])))  # str(d_odcLccFeaturerescond1text["value"])
+                                    self.reason.append("ODC_对中Feature抑制条件1不满足："+ str(odc_2text.get(int(d_odcLccFeaturerescond1text["value"]), "None")))  # str(d_odcLccFeaturerescond1text["value"])
                                 if (d_odcLccFeaturerescond2sts["value"] ==0x1):
-                                    self.reason.append("ODC_对中Feature抑制条件2不满足："+ str(odc_2text.get(int(d_odcLccFeaturerescond2text["value"]), d_odcLccFeaturerescond2text["value"])))  # str(d_odcLccFeaturerescond2text["value"])
+                                    self.reason.append("ODC_对中Feature抑制条件2不满足："+ str(odc_2text.get(int(d_odcLccFeaturerescond2text["value"]), "None")))  # str(d_odcLccFeaturerescond2text["value"])
+
                         if ((d_odcNdaFunrescond1sts["value"] !=0) and (not self.errorFlag_odc1)):   # ODC_NDA功能抑制条件1状态
                             self.errorFlag_odc1 = True
-                            self.reason.append("ODC_NDA功能抑制条件1不满足："+ str(odc_1text.get(int(d_odcNdaFunrescond1text["value"]), d_odcNdaFunrescond1text["value"])))  # str(d_odcNdaFunrescond1text["value"])
+                            self.reason.append("ODC_NDA功能抑制条件1不满足："+ str(odc_2text.get(int(d_odcNdaFunrescond1text["value"]), "None")))  # str(d_odcNdaFunrescond1text["value"])
                         if ((d_odcNdaFunrescond2sts["value"] !=0) and (not self.errorFlag_odc2)):   # ODC_NDA功能抑制条件1状态
                             self.errorFlag_odc2 = True
-                            self.reason.append("ODC_NDA功能抑制条件2不满足："+ str(odc_2text.get(int(d_odcNdaFunrescond2text["value"]), d_odcNdaFunrescond2text["value"])))  # str(d_odcNdaFunrescond2text["value"])
+                            self.reason.append("ODC_NDA功能抑制条件2不满足："+ str(odc_2text.get(int(d_odcNdaFunrescond2text["value"]), "None")))  # str(d_odcNdaFunrescond2text["value"])
             elif (self.currentTime - self.iaccSwitchFirstTime)>8:
                 if(not(self.errorFlag_lat or self.errorFlag_lng or self.errorFlag_odc1 or self.errorFlag_odc2)):
                     if(d_sysLatstate["value"] !=3 or d_sysLngstate["value"] !=3):

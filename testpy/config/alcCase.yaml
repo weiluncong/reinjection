@@ -20,6 +20,5 @@ Message :
     - sab_c385-StmProto.Odc~odc821Textinh~odcNdaFunrescond2text        # 18
 
 author : 202207766@Any3.com
-# dataFile : "C385_500131_2022-08-07_13-37-45.dat"
-dataFile : "2022-08-08_19-16-02.dat"
+dataFile : "/home/ca/data/0902/2022-09-02_17-23-07.dat"
 IaccActive : -1 # 不小于0时有效

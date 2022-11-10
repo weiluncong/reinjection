@@ -113,10 +113,7 @@ class EvalCase():
             dict = self.allDataDict_[sglName]
             timelist = list(dict.keys())
             pos = Bisect(timelist,timestamp)
-            if(abs(timelist[pos]-timestamp)<0.2):
-                return [timelist[pos],dict[timelist[pos]]]
-            else:
-                return "none"
+            return [timelist[pos],dict[timelist[pos]]]
         else:
             return "none"
     

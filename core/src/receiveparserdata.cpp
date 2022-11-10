@@ -48,47 +48,50 @@ ReveiveParserData::~ReveiveParserData()
 {
 }
 
-void ReveiveParserData::init(){
+void ReveiveParserData::init()
+{
+    std::cout << "reveiveParserData init start" << std::endl;
     proto_pool_ = CProtoPool::GetCProtoPool();
     proto_pool_->updataProtoContent(protoAddressPc_);
     proto_pool_->LoadProtoContent(proto_pool_->getProtoContent());
-    std::cout << "reveiveParserData init over"<< std::endl;
+    std::cout << "reveiveParserData init over" << std::endl;
 }
 
-void ReveiveParserData::setSignalFilter(const std::vector<std::string>  & signal_){
-    needSignal.clear();
-    
+void ReveiveParserData::setSignalFilter(const std::vector<std::string> &signal_)
+{
     for (auto name : signal_)
     {
-        needSignal.append(QString::fromStdString(name));     
+        needSignal.append(QString::fromStdString(name));
     }
 
     for (auto signal : signal_)
     {
-        if(!needReceiveTopics.contains(signal.substr(0,signal.find_first_of("~"))))
-            needReceiveTopics.push_back(signal.substr(0,signal.find_first_of("~")));
+        if (!needReceiveTopics.contains(signal.substr(0, signal.find_first_of("~"))))
+            needReceiveTopics.push_back(signal.substr(0, signal.find_first_of("~")));
     }
     isStop = false;
 }
 
-void ReveiveParserData::receiveData(){
+void ReveiveParserData::receiveData()
+{
     zmq::message_t msg;
     std::string topicName;
     double timeStamp;
-    std::string address = "tcp://127.0.0.1:7890";
+    std::string address = "tcp://192.168.1.175:7890";
+    // std::string address = "tcp://127.0.0.1:7890";
     zmq::context_t *context_ = new zmq::context_t();
     std::shared_ptr<zmq::socket_t> socket_ = std::shared_ptr<zmq::socket_t>(new zmq::socket_t(*context_, zmq::socket_type::sub));
     socket_->set(zmq::sockopt::subscribe, "");
     socket_->connect(address);
     while (!isStop)
     {
-        socket_ -> recv(msg);
+        socket_->recv(msg);
         topicName = msg.to_string();
         socket_->recv(msg); // receive timestamp
         std::istringstream is(msg.to_string());
         is >> timeStamp;
         socket_->recv(msg);
-        if(needReceiveTopics.contains(topicName))
+        if (needReceiveTopics.contains(topicName))
         {
             // std::cout << "topicName : " << topicName << std::endl;
             handleData(timeStamp, topicName, msg.to_string());
@@ -96,7 +99,8 @@ void ReveiveParserData::receiveData(){
     }
 }
 
-void ReveiveParserData::handleData(const double & timeStamp, const std::string & topicName, const std::string & data){
+void ReveiveParserData::handleData(const double &timeStamp, const std::string &topicName, const std::string &data)
+{
 
     std::string swc_name;
     std::string no_swc_name;
@@ -127,18 +131,20 @@ void ReveiveParserData::handleData(const double & timeStamp, const std::string &
         nameFlag = nameFlag.split(".").back();
     }
     google::protobuf::Message *msg = proto_pool_->GetProtoMessage(no_swc_name, data);
-    if(msg == nullptr) return;
+    if (msg == nullptr)
+        return;
     QMap<QString, double> signalMap = toSWCData(*msg, TOQSTR(topicName));
     QMap<QString, double> signalMap_;
     for (auto iter = signalMap.begin(); iter != signalMap.end(); iter++)
     {
-        if(needSignal.contains(iter.key()))
+        if (needSignal.contains(iter.key()))
             signalMap_[iter.key()] = iter.value();
     }
-    emit dataUpdate(timeStamp,signalMap_);
+    emit dataUpdate(timeStamp, signalMap_);
 }
 
-QMap<QString, double> ReveiveParserData::toSWCData(const google::protobuf::Message &msg, const QString &topicName){
+QMap<QString, double> ReveiveParserData::toSWCData(const google::protobuf::Message &msg, const QString &topicName)
+{
     QMap<QString, double> swc_map;
 
     auto reflection = msg.GetReflection();
@@ -191,8 +197,8 @@ QMap<QString, double> ReveiveParserData::toSWCData(const google::protobuf::Messa
 }
 
 QString ReveiveParserData::getRepeatedMsg(const google::protobuf::Message &msg,
-                       const google::protobuf::FieldDescriptor *field,
-                       int index)
+                                          const google::protobuf::FieldDescriptor *field,
+                                          int index)
 {
     QString res;
     switch (field->type())
